@@ -1,0 +1,7 @@
+#!/bin/sh
+###
+# Wrapper incase anything needed before starting custom lambda
+#
+###
+set -euo pipefail
+./lambda

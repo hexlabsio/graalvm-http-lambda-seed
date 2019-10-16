@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+## Temporary addition for local testing
+Transform: AWS::Serverless-2016-10-31
+
+Description:
+  A Hello, World app for AWS Lambda.
+  Written in Kotlin, compiled with the GraalVM and executed with the AWS Lambda Custom Runtime.
+
+Resources:
+  KtGraalvmHttpSeed:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: graalvm-http
+      Description: Lambda function with custom runtime
+      Runtime: provided
+      Handler: unused
+      CodeUri: build/dist/lambda.zip
+      MemorySize: 512
+      Timeout: 15
+      Environment:
+        Variables:
+          HTTP4K_BOOTSTRAP_CLASS: "io.hexlabs.RootHandler"
+      Events:
+        Hello:
+          Type: Api
+          Properties:
+            Path: /hello-runtime/{name}
+            Method: GET
+        Ping:
+          Type: Api
+          Properties:
+            Path: /ping
+            Method: GET
+
+Outputs:
+  ApiURL:
+    Description: "API endpoint URL for Prod environment"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/demo/hello/{name}"
+

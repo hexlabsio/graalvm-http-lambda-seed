@@ -1,0 +1,8 @@
+[
+  {
+    "name": "io.hexlabs.RootHandler",
+    "allPublicConstructors": true,
+    "allDeclaredFields": true,
+    "allPublicMethods": true
+  }
+]
