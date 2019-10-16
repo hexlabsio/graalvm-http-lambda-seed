@@ -5,16 +5,16 @@ var `HTTP4K_BOOTSTRAP_CLASS` that implements `org.http4k.serverless.AppLoader` i
 The HTTP4K serverless lib has been copied into the code base due to needing a few modifications to get things working
 
 
-##Building
+## Building
 Use `./gradlew build` to build and `./gradlew shadowJar` to produce a fat jar
 To build a native image run `./dist`, this will build the fat jar and create the native image
 
-##Deployment
-###Local deployment
+## Deployment
+### Local deployment
 run `sam local start-api` to run the lambda instance locally in a docker container 
 (hopefully can move this to Kloudformation)
 
-###AWS deployment
+### AWS deployment
 run 
 `kloudformation -v 1.1.2 -m serverless@1.1.1 deploy -stack-name YOUR_STACK_NAME -bucket CODE_DEPLOYMENT_BUCKET -location build/dist/lambda.zip`
 
